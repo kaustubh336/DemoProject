@@ -1,0 +1,48 @@
+ Id CommandLine
+  -- -----------
+   1 git version
+   2 cd D:\gitDemo
+   3 ls
+   4 ls
+   5 git init
+   6 git status
+   7 git add .
+   8 git status
+   9 git config --global user.gmail
+  10 git config --global user.gmail
+  11 git config --global user.name "kaustubh"
+  12 git config --global user.email
+  13 git config --global user.email "kaustubhkhatu8@gmail.com"
+  14 git config --global user.email
+  15 git remote add origin https://github.com/kaustubh336/De...
+  16 git remote
+  17 git remote -v
+  18 git branch
+  19 git remote
+  20 git branch
+  21 git branch
+  22 git branch -M main
+  23 git branch
+  24 git push -u origin main
+  25 git push origin main
+  26 git push origin master
+  27 git push -u origin main
+  28 git status
+  29 git branch
+  30 git add .
+  31 git commit -m "Initial commit"
+  32 git branch -M main
+  33 git push -u origin main
+  34 git remote add origin https://github.com/kaustubh336/De...
+  35 git config --global user.email
+  36 git config --global user.name "kaustubh336"
+  37 git config --global user.email "kaustubhkhatu8@gmail.com"
+  38 git config --global user.email
+  39 git remote
+  40 git remote add origin https://github.com/kaustubh336/De...
+  41 git remote -v
+  42 git branch
+  43 git push origin main
+  44 git branch -M main
+  45 git push -u origin main
+  46 git history

@@ -1,0 +1,231 @@
+# JavaScript Study Notes
+
+## Core Concepts
+
+### Primitive Data Types (Value Types)
+
+*   **String:** Textual data (e.g., "John").
+*   **Number:** Numeric data (e.g., 1, 1.5).
+*   **Boolean:** True or false values (e.g., true).
+*   **Undefined:** A variable that has been declared but has not yet been assigned a value.
+*   **Null:** Represents the intentional absence of a value.
+*   **Symbol (BigInt):** Introduced in ES6, used for unique identifiers and larger integers.
+
+**Example:**
+
+```javascript
+let firstName = "John";
+console.log(typeof firstName); // Output: string
+
+let age = 30;
+console.log(typeof age); // Output: number
+
+let isStudent = true;
+console.log(typeof isStudent); // Output: boolean
+
+let x = null;
+console.log(typeof x); // Output: object (historical quirk)
+
+let y;
+console.log(typeof y); // Output: undefined
+```
+
+### Reference Data Types
+
+*   **Object:** A collection of key-value pairs.
+*   **Array:** An ordered list of values.
+*   **Function:** A reusable block of code.
+
+**Note:** Arrays and functions are technically objects in JavaScript.
+
+**Example:**
+
+```javascript
+let arr = [1, 2, 3, 4];
+console.log(typeof arr); // Output: object
+
+let course = {
+    title: "JavaScript",
+    description: "This is a JS course",
+    duration: 30
+};
+console.log(typeof course); // Output: object
+
+console.log(course.title); // Accessing object property using dot notation
+console.log(course['title']); // Accessing object property using bracket notation
+```
+
+### Copy by Value vs. Copy by Reference
+
+*   **Primitive Types:** When assigning a primitive type to a new variable, the value is copied. Changes to one variable do not affect the other.
+*   **Reference Types:** When assigning a reference type (object, array) to a new variable, the reference (pointer) is copied. Both variables point to the same object in memory. Changes to one variable *do* affect the other.
+
+**Example:**
+
+```javascript
+let a = "kaustubh";
+let b = a;
+a = "kk";
+console.log(a); // Output: kk
+console.log(b); // Output: kaustubh
+
+let j = { name: "kaustubh" };
+let k = j;
+j.name = "kk";
+console.log(j); // Output: { name: "kk" }
+console.log(k); // Output: { name: "kk" }
+```
+
+### Arrays
+
+*   Arrays are used to store collections of data.
+*   Elements in an array can be of any data type.
+*   Arrays are zero-indexed (the first element is at index 0).
+*   The `length` property returns the number of elements in the array.
+
+**Example:**
+
+```javascript
+let courses = ['js', 'java', 'python', 50, true, null];
+console.log(courses.length); // Output: 6
+console.log(courses[0]); // Output: js
+console.log(courses); // Output: ['js', 'java', 'python', 50, true, null]
+```
+
+### Execution Context
+
+*   **Memory Phase:** Variables and function declarations are stored in memory.
+*   **Code Execution Phase:** Code is executed line by line.
+*   **Hoisting:** `var` and function declarations are hoisted (moved to the top of their scope) during the memory phase.  This means you can *use* them before they appear to be declared in the code.  However, only the *declaration* is hoisted, not the initialization.
+*   **Temporal Dead Zone (TDZ):** `let` and `const` declarations are also hoisted, but accessing them before their declaration results in a `ReferenceError`. This is the TDZ.
+*   **Lexical Scope:** Determines what variables and functions are accessible from a particular part of the code.
+
+**Example:**
+
+```javascript
+createCourse("Python"); // Works due to function hoisting
+//console.log(x); // Output: undefined because only declaration is hoisted
+
+function createCourse(coursename) {
+    console.log("Creating course: " + coursename);
+}
+
+var x = 10;
+console.log(x); // Output: 10
+```
+
+### `window` and `this`
+
+*   In the global scope, `this` refers to the `window` object (in browsers).
+*   `var` declarations in the global scope are added as properties to the `window` object.
+*   `let` and `const` declarations are *not* added to the `window` object.
+*   `let` and `const` are block-scoped, while `var` is function-scoped.
+
+**Example:**
+
+```javascript
+var l = 10;
+console.log(window.l); // Output: 10
+console.log(this === window); // Output: true
+```
+
+### Functions
+
+*   **First-Class Citizens:** Functions can be stored in variables, passed as arguments to other functions, and returned from other functions.
+*   **Higher-Order Functions:** Functions that take other functions as arguments or return functions as results.
+*   **Anonymous Functions:** Functions without a name.
+*   **Arrow Functions:** A shorter syntax for writing functions.
+*   **Closure:** A function bundled with its lexical environment.  This allows a function to "remember" variables from its surrounding scope even after that scope has finished executing.
+
+**Example:**
+
+```javascript
+// Arrow function
+let sum = (a, b) => a + b;
+
+// Higher-order function
+function operate(operationfunc, a, b) {
+    return operationfunc(a, b);
+}
+
+console.log(operate(sum, 2, 3)); // Output: 5
+
+// Closure
+function outer() {
+    let count = 0;
+    function inner() {
+        count++;
+        console.log(count);
+    }
+    return inner;
+}
+
+let incrementCounter = outer();
+incrementCounter(); // Output: 1
+incrementCounter(); // Output: 2
+```
+
+### Asynchronous JavaScript and Promises
+
+*   JavaScript is non-blocking and asynchronous.
+*   **Callbacks:** Functions that are passed as arguments to other functions and executed after an asynchronous operation completes.  Can lead to "callback hell" or "pyramid of doom".
+*   **Promises:** An object that represents the eventual completion (or failure) of an asynchronous operation.
+    *   **States:** pending, fulfilled, rejected
+    *   **Methods:** `then`, `catch`, `finally`
+*   **Async/Await:** Syntactic sugar for working with promises, making asynchronous code easier to read and write.
+
+**Example:**
+
+```javascript
+function getData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('data fetched');
+            //reject('server error');
+        }, 5000);
+    });
+}
+
+async function fetchData() {
+    try {
+        const result = await getData();
+        console.log(result);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+fetchData();
+```
+
+### Array Methods
+
+*   **`map()`:** Creates a new array by applying a function to each element of the original array.
+*   **`filter()`:** Creates a new array containing only the elements that pass a test implemented by a provided function.
+*   **`reduce()`:** Executes a reducer function on each element of the array, resulting in a single output value.
+
+**Example:**
+
+```javascript
+const nums = [1, 2, 3, 4, 5];
+
+const doubleNums = nums.map((num) => 2 * num);
+console.log(doubleNums); // Output: [2, 4, 6, 8, 10]
+
+const evenNums = nums.filter((num) => num % 2 === 0);
+console.log(evenNums); // Output: [2, 4]
+
+const sum = nums.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(sum); // Output: 15
+```
+
+## Glossary
+
+*   **Hoisting:** The process where variable and function declarations are moved to the top of their scope during compilation.
+*   **Temporal Dead Zone (TDZ):** The period between when a `let` or `const` variable is declared and when it is initialized. Accessing the variable during this time results in an error.
+*   **Lexical Scope:** The scope of a variable is determined by its location within the source code.
+*   **Closure:** A function's ability to remember and access variables from its surrounding scope, even after the outer function has finished executing.
+*   **Asynchronous:** Operations that do not block the main thread of execution, allowing other code to run while waiting for the operation to complete.
+*   **Promise:** An object representing the eventual completion (or failure) of an asynchronous operation.
+*   **Callback:** A function passed as an argument to another function, to be executed after an operation is completed.
+*   **Higher-Order Function:** A function that takes another function as an argument or returns a function as a result.

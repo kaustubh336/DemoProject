@@ -51,3 +51,43 @@ console.log('adition of a and b is :' + obj3.add(5,6));
   };
 
   console.log(person.firstName + " " + person.lastName + " : " + person.id); // John Doe
+
+console.log("--------------------------");
+
+  // Store data
+localStorage.setItem("username", "Kaustubh");
+
+localStorage.setItem("age", "22");
+
+// Retrieve data
+const username = localStorage.getItem("username");
+const age = localStorage.getItem("age");
+console.log(username); // Kaustubh
+console.log(age); // 22
+// Remove data
+localStorage.removeItem("age");
+const ageAfterRemoval = localStorage.getItem("age");
+console.log(ageAfterRemoval); // null
+localStorage.getItem("name"); 
+console.log(username); // null
+localStorage.setItem("password", "myPassword123");
+const password = localStorage.getItem("password");
+console.log(password); // myPassword123
+localStorage.clear();
+console.log(localStorage.length); // 0
+localStorage.setItem("city", "New York");
+const city = localStorage.getItem("city");
+console.log(city); // New York
+localStorage.setItem("country", "USA");
+const country = localStorage.getItem("country");
+console.log(country); // USA
+console.log(localStorage.length); // 2
+localStorage.clear();
+console.log(localStorage.length); // 0
+console.log(username); 
+console.log(age);
+localStorage.clear();
+console.log(localStorage.length); // 0
+console.log(username);
+localStorage.removeItem("username");
+console.log(username);

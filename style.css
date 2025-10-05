@@ -1,0 +1,91 @@
+/* 1️⃣ Universal Selector
+Selects everything. */
+* {
+    background-color: lightgrey;
+    /* border: 2px solid black; */
+    padding: 10px;
+    margin: 20px;
+}
+
+/* 3️⃣ Class Selector (.classname)
+Selects elements with a specific class. */
+.container {
+    /* border : 1px solid black;
+    background-color: lightgreen; */
+    color: darkmagenta;
+    font-size: 10px;
+}
+
+/* 2️⃣ Element (Type) Selector
+Selects elements by tag name. */
+
+p{
+    background-color: blue;
+    font-size: 10px;
+}
+
+div {
+    background-color: orange;
+    border: 4px solid brown;
+}
+
+/* 4️⃣ ID Selector (#idname)
+Selects an element by its ID (must be unique in the page). */
+#main {
+    background-color: yellow;
+    /* color: darkred; */
+    border: 2px dashed darkred;
+}
+
+/* 5️⃣ Descendant Selector
+Selects elements inside another element.
+Means: “select all <p> inside <div>”. */
+
+div p {
+    color: blue;
+}
+
+/* 6️⃣ Child Selector (>)
+Selects direct children only.
+Means: “select <p> elements that are directly inside a <div>”. */
+div > p {
+  color: orange;
+}
+
+/* 7️⃣ Adjacent Sibling Selector (+)
+Selects an element that is directly after another one.
+Means: “select the <p> that is directly after a <div>”. */
+h2 + p {
+  color: black;
+}
+
+/* 9 Pseudo-classes
+Select elements based on state or position. */
+a:hover {
+  color: red;
+}
+li:first-child {
+  font-weight: bold;
+}
+input:focus {
+  border-color: blue;
+}
+
+/* 11️⃣ Pseudo-elements
+Style specific parts of an element. */
+p::first-letter {
+  font-size: 24px;
+  color: red;
+}
+p::before {
+  content: "👉 ";
+}
+p::after {
+  content: " ✅";
+}
+
+/* 12️⃣ Group Selector
+Apply same style to multiple selectors. */
+h1, h2, h3 {
+  color: navy;
+}
